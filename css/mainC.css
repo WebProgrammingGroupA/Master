@@ -1,0 +1,418 @@
+/*Generic styling*/
+
+/*clear fix, used to clear colapsing elements that have floated decendants*/
+.clear:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}
+
+/*adding Carolina Header styling*/
+/* adding style to the main Header */
+header {
+            background-color:   maroon;
+            color: whitesmoke;             
+            font-size: 20px;
+            text-align: left;
+            padding: 2% ;
+            margin-left: 5%;
+            margin-right: 5%;
+            font-family:  "Copperplate Gothic Bold";
+            border: 1px solid black;   
+            border-radius: 30px;
+            width: 100%;
+            height: 7%;
+            /*
+            max-height: 100px;
+            height: 100px;*/
+           
+           }
+
+#logo {
+   float:  left; 
+   width: 30%;
+  
+   /*max-width: 2000px;
+   width:  auto;
+   max-height: 200px;
+   height: auto;*/
+   }
+
+#ReportNow{
+    width: 20%;
+   
+   float: right;
+   margin-right: 18%;
+  /*
+   max-height: 2000px;
+   height: auto;
+     max-width: 2000px;
+   width:  auto;*/
+}
+
+.h1Header {
+    color: whitesmoke;
+    padding-left: 35%;    
+    }
+    
+    /*adding Carolina Body styling*/
+    body {    
+   background-image: url(bg4.png) ;
+   
+  width: 100%;  
+}
+
+    /*adding Carolina navigation styling below with logo*/
+.nav {
+   clear: both;      
+   margin-left: 5%;
+   margin-right: 5%;
+   width: 100%;
+  /*font-family:  "Copperplate Gothic Bold" ,initial;*/
+ 
+}
+.nav ul {
+    list-style: none;
+    padding: 0;  
+   
+}
+
+.nav li {
+    float: left;
+    width: 15%;
+    background-color:  maroon; /*test #444444;*/
+    text-align: center;
+    border-right: 1px solid white;
+    /*adding relative position for my submenus to relate to*/
+    position: relative;
+   /*filling the gap based on the top property I gave to the .nav li ul*/ 
+    height: 4%;
+    /*centering the text vertically within the 30px height that I gave*/
+    line-height: 40px;
+    border-radius: 15px ;
+   
+        
+}
+
+.nav li ul {
+    /*setting position absolute (will refer to the first relative positioned above)+ top30px & left0px from the .nav li */
+    position: absolute;
+    top: 40px;
+    left: 0;
+    /*hiding the submenues*/
+    visibility: hidden;
+}
+
+/*applying style to SHOW submenus when hover over the nav list items*/
+.nav li:hover ul {
+    visibility:  visible;    
+}
+
+.nav li ul li{
+    float: none;
+    width: 230px;
+    text-align: left;
+    padding-left: 10px;
+    border-top: 1px solid white;
+}
+
+.nav a {
+    /*removing underlining*/
+    text-decoration: none;
+    color: white;
+}
+
+/*adding functionality to nav menu*/
+.nav li:hover {
+    background-color: black;
+}
+
+/*adding Carolina Main Content section styling*/
+section {
+    float: none;
+    margin-right: 6%;
+    margin-left: 6%;
+    background-color: white;
+    color: black;
+    padding: 30px;
+    border: 1px solid maroon;
+    border-radius: 50px;
+ 
+}
+
+/*Main navigation*/
+/* removing from Chris to TEST my nav items
+.main-navigation {
+    background-color: maroon;
+    width: 100%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+}
+
+.main-navigation-logo {
+    float: left;
+    text-transform: uppercase;
+    padding: 10px;
+    color: white;
+}
+
+.main-navigation ul {
+    float: right;
+    list-style: none;
+    margin: 0; //reset browsers base styles
+    padding: 10px;
+}
+
+.main-navigation li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.main-navigation a {
+    color: white;
+}
+
+.main-navigation a:hover, 
+.main-navigation a:visited {
+    color: darkgrey;
+}
+
+
+//Chris main content
+//makes the content of the website centered
+.navigation-container, .main-content {
+    padding: 10px;
+    width: 70%;
+    margin: 0 auto;
+}
+
+
+
+.main-content {
+    margin-top: 96px;
+     padding: 10px;
+    width: 70%;
+    margin: 0 auto;
+}
+*/
+
+
+@media (max-width: 1024px) {
+    .navigation-container, .main-content {
+        padding: 10px;
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    .main-content {
+        margin-top: 96px;
+    }
+}
+
+@media (max-width: 800px) {
+    .navigation-container, .main-content {
+        padding: 10px;
+        width: 700px;
+        margin: 0 auto;
+    }
+    
+    .main-content {
+        margin-top: 96px;
+    }
+}
+
+/*Typography*/
+html {
+  font: normal 112.5%/1.65 sans-serif;
+}
+
+/*Breaks words that are too long for better looking typography*/
+body {
+  word-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1;
+  margin-top: 0;
+  color: black;//#444444;
+ 
+}
+
+h1 {
+  font-size: 38px;
+  margin-bottom: 9px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 11px;
+}
+
+h3 {
+  font-size: 18px;
+  margin-bottom: 11px;
+}
+
+h4 {
+  font-size: 12px;
+  margin-bottom: 11px;
+}
+
+p {
+  margin: auto auto 1.5em;
+}
+
+a {
+    color: #031f73;
+    text-decoration: none;
+}
+
+/*Carolina: adding styling for strong*/
+ strong {
+        color: maroon;
+        font-size: 1.4em;
+    }
+/*images*/
+.article-side-picture {
+    width: 40%;
+    float: right;
+    margin: 0 20px 20px 20px;
+}
+
+/*table layout*/
+table {
+    border: 1px solid #cbcbcb;
+    background-color: white;
+}
+
+thead {
+    background: #e0e0e0;
+}
+
+th {
+    color: #000;
+}
+
+th,
+td {
+    padding: 8px 16px;
+    border-left: 1px solid #cbcbcb;
+}
+
+tr {
+    border-bottom: 1px solid #cbcbcb;
+}
+
+/*form*/
+legend {
+    width: 100%;
+    padding: 5px 0;
+    margin-bottom: 5px;
+    color: #333;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+fieldset {
+    border: 0;
+}
+
+label {
+    margin: 5px 0;
+    display: block;
+}
+
+textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px #ddd;
+  width: 90%;
+}
+
+.input-block {
+    display: block;
+}
+
+/*Buttons*/
+
+.donate{
+    margin-left: 500px;
+    margin-top: 30px;
+}
+
+/*removing Chris for testing*/
+.button {
+    background-color: maroon;
+    color: white;
+    border: 0;
+    border-radius: 2px;
+    padding: 5px 10px;
+}
+/*adding Carolina*/
+.button {
+    background-color: maroon;
+    color: white;
+    
+    border: 0;
+    border-radius: 10px;
+    padding: 5px 10px;
+   max-height: 50px;
+    height: 50px;
+   max-width: 150px;
+   width: 150px;
+  font-size: 17px;
+  
+ }
+
+.button-large {
+    
+}
+
+/*Page specific styling*/
+
+/*Team members*/
+.team-members {
+    list-style: none;
+    margin-bottom: 30px;
+    padding-left: 0;
+    -webkit-padding-start: 0;
+}
+
+.team-member {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+.team-member img {
+    width: 70%;
+   
+    border-radius: 10px;
+   
+    border: 1px solid grey;
+}
+
+/*testing carolina but chris is better
+.inPh {
+    max-width: 400px;
+    width: 400px;
+    max-height: 200px;
+    height: 200px;
+    
+    border-radius: 20px;
+    
+}
+*/
+
+.team-member-name {
+    font-size: 16px;
+    margin-bottom: 5px;
+}

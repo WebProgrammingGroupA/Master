@@ -1,0 +1,247 @@
+
+/* 
+    Created on : Jun 12, 2015, 7:32:49 PM
+    Author     : carolina.egro
+*/
+
+@charset "UTF-8";
+
+/*from chris file*/
+.clear:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}
+
+
+/* adding styling rules for by HTML5 elements - by creating blocks*/
+
+header,aside, footer,main, section, nav, div {display: block;}
+
+/*seetting Margin and Padding to 0 for the elements that I used in HTML5*/
+html, body, main,section, nav,h1, h2, p, img, a, footer, div {
+    padding: 0;
+    margin: 0;
+}
+.h1Header {
+    color: whitesmoke;
+}
+
+/* adding style to the main Header */
+header {
+            background-color:   maroon;
+            color: whitesmoke;             
+            font-size: 20px;
+            text-align: left;
+            padding: 20px ;
+            margin-left: 5%;
+            margin-right: 5%;
+            font-family:  "Copperplate Gothic Bold";
+            border: 1px solid black;   
+            border-radius: 30px;
+            
+           }
+
+#logo {
+   float:  left; 
+   /*max-width: 2000px;
+   width:  auto;
+   max-height: 300px;
+   height: auto;*/
+   }
+
+#ReportNow{
+   
+   /*max-height: 2000px;
+   height: auto;
+     max-width: 200px;
+   width:  auto;*/
+}
+body {    
+   background-image: url(bg4.png) ;
+   
+  width: 100%;  
+}
+
+
+
+/*Carolina: displaying my nav below the logo*/
+.nav {
+    clear: both;
+       
+   margin-left: 5%;
+   margin-right: 5%;
+   width: 100%;
+  /*font-family:  "Copperplate Gothic Bold" ,initial;*/
+  
+}
+.nav ul {
+    list-style: none;
+    padding: 0;  
+}
+
+.nav li {
+    float: left;
+    width: 239px;
+    background-color:  maroon; /*test #444444;*/
+    text-align: center;
+    border-right: 1px solid white;
+    /*adding relative position for my submenus to relate to*/
+    position: relative;
+   /*filling the gap based on the top property I gave to the .nav li ul*/ 
+    height: 40px;
+    /*centering the text vertically within the 30px height that I gave*/
+    line-height: 40px;
+    border-radius: 15px           
+}
+
+.nav li ul {
+    /*setting position absolute (will refer to the first relative positioned above)+ top30px & left0px from the .nav li */
+    position: absolute;
+    top: 40px;
+    left: 0;
+    /*hiding the submenues*/
+    visibility: hidden;
+}
+
+/*applying style to SHOW submenus when hover over the nav list items*/
+.nav li:hover ul {
+    visibility:  visible;    
+}
+
+.nav li ul li{
+    float: none;
+    width: 230px;
+    text-align: left;
+    padding-left: 10px;
+    border-top: 1px solid white;
+}
+
+.nav a {
+    /*removing underlining*/
+    text-decoration: none;
+    color: white;
+}
+
+/*adding functionality to my nav menu*/
+.nav li:hover {
+    background-color: black;
+}
+
+
+
+/*Main Content section*/
+section {
+    
+    float: none;
+    font-size: 1.4em;
+   
+    margin-right: 5%;
+    margin-left: 5%;
+    background-color: white;
+    color: black;
+    padding: 30px;
+    border: 1px solid maroon;
+    border-radius: 50px;
+ 
+}
+
+section ol {
+    display: inline-block;
+    }
+
+    strong {
+        color: maroon;
+    }
+
+.endMainContent {
+    margin-bottom: 80px;
+}
+
+
+/*Video styling*/
+.fb-video {
+     
+    /* Do not occupy the full width*/
+    max-width: 600px !important; 
+    width: 300px;
+    height: auto;
+       
+    /* Align the video and wrap the text */
+    float: none;
+    
+    /* Add a Grey border to the video */
+    border: 10px solid maroon;
+    
+    margin-left:20%;
+    
+  }
+
+/*
+.fb-xfbml-parse-ignore {
+      margin-right: 30%;
+    margin-left: 5%;
+    height:  50px;
+}*/
+
+
+/*from Chris*/
+html {
+  font: normal 112.5%/1.65 sans-serif;
+  
+}
+
+/*Breaks words that are too long for better looking typography*/
+body {
+  word-wrap: break-word;
+}
+
+
+
+.Photos li{
+    display: inline-block;
+   
+}
+.inPh {
+    max-width: 400px;
+    width: 400px;
+    max-height: 200px;
+    height: 200px;
+    
+    border-radius: 20px;
+    
+}
+
+.Photos {
+        
+    -webkit-padding-start: 0;
+    
+    
+}
+
+
+
+strong {
+   font-size: 35px;
+}
+
+.donate{
+    margin-left: 500px;
+}
+.button {
+    background-color: maroon;
+    color: white;
+    
+    border: 0;
+    border-radius: 10px;
+    padding: 5px 10px;
+   max-height: 50px;
+  height: 50px;
+   max-width: 150px;
+   width: 150px;
+  font-size: 17px;
+  
+ }

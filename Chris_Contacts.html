@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>About</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/resetC.css"/>
+        <link rel="stylesheet" href="css/mainC.css"/>
+    </head>
+    <body>
+        
+        <!--adding Carolina Header -->
+         <header class="header1">            
+          <img id="logo" src="images/LOGO.png" alt="The Unexpected">
+          <img id="ReportNow" src="images/ReportNow.png" alt="Report Now">
+          <h1 class = "h1Header"> <br>Do not wait. Report it.</h1>                   
+        </header>
+        
+        
+        <!--adding Carolina Navigation tool-->
+        <div class="nav clear">
+            <ul>
+                <li> <a href="Carolina_Home.html">Home</a></li>
+                <li> <a href="Chris_About.html">About</a></li>
+                <li> <a href="Tim_Form.html ">Report it</a></li>
+                <li> <a href="Tor_Map.html">Current Events</a>
+                    <ul> 
+                        <li> <a href="Tor_Map.html">View Map</a></li>
+                        <li><a href="Graphs_index.html">View Graphs</a></li>
+                    </ul>
+                </li>
+                <li> <a href="Jeanie_Advice.html">Advice</a>
+                    <ul> 
+                        <li> <a href="Jeanie_Advice.html">Natural Events Advice</a></li>                    
+                        <li><a href="Jeanie_Advice.html">Car Accidents Advice</a></li>
+                    </ul>
+                </li>
+                
+                <li> <a href="Chris_Contact.html">Contacts</a></li>             
+            </ul>
+        </div>
+                
+        <!--removing from Chris to test my nav-->
+        <!--Top navigation and logo
+        <nav class="main-navigation">
+            <div class="navigation-container clear">
+                <a class="main-navigation-logo" href="#">
+                    The Unexpected
+                </a>
+                <ul>
+                    <li>
+                        <a href="#">Report</a>
+                    </li>
+                    <li>
+                        <a href="#">Current</a>
+                    </li>
+                    <li>
+                        <a href="#">Advice</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        -->
+         <section class="main-content">
+            <section class="the-team">
+                <form method="post" action="">
+                    <fieldset>
+                        <legend>Contact the Team</legend>
+                        <label>
+                            Name
+                            <input class="input-block" name="name" type="text">
+                        </label>
+                        <label>
+                            Email Address
+                            <input class="input-block" name="EmailAddress" type="email">
+                        </label>
+                        <label>
+                            Query
+                            <textarea class="input-block"  name="query" rows="4" cols="36"></textarea>
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <!--Submit and clear the form buttons-->
+                        <input class="button" type="submit" value="Submit">
+                        <input class="button" type="reset" value="Clear">
+                    </fieldset>
+                </form>
+            </section>
+        </section>
+    </body>
+</html>

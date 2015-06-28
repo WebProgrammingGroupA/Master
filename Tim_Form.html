@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<!-- Tim Haines, This is the submission page for the Team 1 website. -->
+<html>
+   <head>
+      <meta charset = "utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Submit Information</title>
+      <link type="text/css" rel="stylesheet" href="css/tim_form.css">      
+      <link rel="stylesheet" href="css/resetC.css"/>
+      <link type="text/css" rel="stylesheet" href="css/mainC.css">
+
+      
+   </head>
+   <body>
+
+  <!--adding Carolina Header -->
+         <header class="header1">            
+          <img id="logo" src="images/LOGO.png" alt="The Unexpected">
+          <img id="ReportNow" src="images/ReportNow.png" alt="Report Now">
+          <h1 class = "h1Header"> <br>Do not wait. Report it.</h1>                   
+        </header>
+        
+        
+        <!--adding Carolina Navigation tool-->
+        <div class="nav clear">
+            <ul>
+                <li> <a href="Carolina_Home.html">Home</a></li>
+                <li> <a href="Chris_About.html">About</a></li>
+                <li> <a href="Chris_Contacts.html ">Contacts</a></li>
+                <li> <a href="Tor_Map.html">Current Events</a>
+                    <ul> 
+                        <li> <a href="Tor_Map.html">View Map</a></li>
+                        <li><a href="Graphs_index.html">View Graphs</a></li>
+                    </ul>
+                </li>
+                <li> <a href="Jeanie_Advice.html">Advice</a>
+                    <ul> 
+                        <li> <a href="Jeanie_Advice.html">Natural Events Advice</a></li>                    
+                        <li><a href="Jeanie_Advice.html">Car Accidents Advice</a></li>
+                    </ul>
+                </li>
+                
+                <li> <a href="Chris_Contact.html">Contacts</a></li>             
+            </ul>
+        </div>
+        
+ <section class="main-content">
+
+        <h1>Submit Your Data Here</h1>
+            <p><i>Please submit your data using the form below. If there is no appropriate
+            entry for the information that you wish to record, please select 'other'.</i></p>
+
+            <form method = "post" action = "http://www.madeup.com"> 
+            <!-- Made up value,for the time being.-->
+                <input type = "hidden" name = "recipient"
+                value = "timhaines@hotmail.com">
+                <input type = "hidden" name = "subject" 
+                value = "Data Form Submission">
+                <!-- Need to find a way of accessing the smart-phone's location information
+            and submitting it as a (?) hidden action?-->
+
+          <fieldset>
+                <legend class="relegend">Please provide a description of where you are reporting this 
+              incident from:</legend><br>
+              
+          <p><label>Country: 
+            <input class="input-block" name = "country" type = "text"  size = "25">
+         </label></p>
+         <p><label>Province or District: 
+            <input class="input-block" name = "province" type = "text"  size = "25">
+         </label></p>
+         <p><label>Nearest Town: 
+            <input class="input-block" name = "town" type = "text"  size = "25">
+         </label></p>
+         <p><label>Nearest Road: 
+            <input class="input-block" name = "road" type = "text"  size = "25">
+         </label></p>
+         <p>Please provide any further information here which
+             would assist us in locating you, if required.</p>
+         <textarea name = "comments"
+                   rows = "3" cols = "60">Enter text here.</textarea><br>
+                   
+           <label>Tick box if you less than 2km from the location of the incident
+             <input name = "LocationNear" type = "radio"
+                  value = "Yes"></label>
+            <!-- The logic of this question is that if the answer is 'yes', then
+            the location of the user's iphone can be used as the location of the
+            incident on the map. Additionally, if 'Yes' we should direct them to
+            the section of the site on safety advice.-->
+            </fieldset>
+            <br>
+          <fieldset>
+              <legend class="relegend">How do you know about this incident? </legend>
+
+               <p>
+            Select from the following drop-down menu:<br>
+                <!-- Drop down selection-->
+               <select name = "howiknow">
+                  <option>I saw it happen</option>
+                  <option>I saw it after it happened</option>
+                  <option>I was told about it by someone who saw it</option>
+                  <option>I heard people talking about it</option>
+                  <option>I saw it in the media</option>
+                  <option>I saw it on social media</option>
+                  <option>Other</option>
+            <!-- When we make this interactive, I would like the last three options
+            to prompt the form-filler to state which site they found the info from
+            or say what the source was if it was 'other'.-->
+               </select>
+          </fieldset>      
+            <br> 
+          <fieldset>
+              <legend class="relegend">Contact Details: </legend>
+             <label>Please check this box if you are willing to be contacted by 
+             an Aid Agency in order to provide further details if required?
+             <input name = "LocationNear" type = "radio"
+                    value = "Yes"></label><br>
+                     <!-- Again, when we make this interactive, it would be good
+                     if the personal data section only appears if the radio box
+                     above is checked.-->
+            <p><label>What is your name?: 
+            <input name = "submittingname" type = "text"  size = "25">
+         </label></p>           
+            What is the best way to contact you?
+               <select name = "howtocontact">
+                  <option>Email</option>
+                  <option>Text</option>
+                  <option>Phone</option>
+                  <option>Skype</option>
+                  <option>Other</option>
+               </select>
+         <br>
+         <br>
+         
+         <p>Please provide your contact details here.</p>
+         <textarea name = "contactdetails"
+                   rows = "3" cols = "60">Enter text here.</textarea>
+          </fieldset>  
+          <br> 
+          
+          <fieldset>
+              <legend class="relegend">Event Details: </legend>
+         <h3> When did the event occur? </h3>
+         
+          <p><label>Date: 
+                  <input name = "eventdate" type = "date"></label></p>
+          <p><label>Time: 
+                  <input name = "eventtime" type = "time"></label></p>
+             <!-- This throws a warning in the validator as 'date input type is
+             not supported by all browsers. In 'real life' I would get around this
+             by using a code library.-->
+          <h3>Please provide a description of where this incident occurred:</h3><br>
+         <label>Tick box if you less than 2km from the location of the incident
+             <input name = "LocationNear" type = "radio"
+                  value = "Yes"></label>
+         <p> Ticking this box will set the location of the event to the current
+         location of your smartphone. If you are able to provide a more accurate
+         location by (insert method here) then please do so.</p>
+         
+         <p> To submit the location of the location of the incident by selecting
+             a point on a map click <a href="http://laureatestudentserver.com/IN137/sutthipongl/maptest2/html5geolocationtest.html">here </a></p>
+            <!-- As discussed with Tor, it would be better to have the map appear on
+            this page - we plan to implement that next week - this is a a stop gap
+            solution.-->
+         <br>
+
+          <p><label>Country: 
+            <input class="input-block" name = "country" type = "text"  size = "25">
+         </label></p>
+         <p><label>Province or District: 
+            <input class="input-block" name = "province" type = "text"  size = "25">
+         </label></p>
+         <p><label>Nearest Town: 
+            <input class="input-block" name = "town" type = "text"  size = "25">
+         </label></p>
+         <p><label>Nearest Road: 
+            <input class="input-block" name = "road" type = "text"  size = "25">
+         </label></p>
+         <p>Please provide any further information here which
+             would assist relief agencies in locating this incident.</p>
+         <textarea name = "comments"
+                   rows = "3" cols = "60">Enter text here.</textarea>
+         <br>
+         <br>
+         <h3> What Happened? </h3>
+         <br>
+
+         <p><label>Select the event type from the following drop-down menu:</label></p>
+               <select  class ="input-block" name = "event_type">
+                  <option>Avalanche</option>
+                  <option>Conflict</option>
+                  <option>Earthquake</option>
+                  <option>Flooding</option>
+                  <option>Landslide</option>
+                  <option>Rioting / Civil Unrest</option>
+                  <option>Tornado / Hurricane / Storm</option>
+                  <option>Transport Accident</option>
+                  <option>Tsunami</option>
+                  <option>Volcanic Eruption</option>
+                  <option>Wild Fire</option>
+                  <option>Other</option>
+                  
+            <!-- Need to link this to the section below using JS, so that only
+            the appropriate options show up. eg, 'plane crash' should not be able
+            to be a sub-type of the event type 'Avalanche'.-->
+               </select>
+         <br>
+         <br>
+
+            <p>Select the event sub-type from the following drop-down menu:</p>
+               <select class ="input-block" name = "event_sub_type">
+                  <option>Bombing</option>
+                  <option>Building Collapse</option>
+                  <option>Drinking Water Shortage</option>
+                  <option>Explosion</option>
+                  <option>Fire</option>
+                  <option>Flooding</option>
+                  <option>Food Shortage</option>
+                  <option>Military / Militia action</option>
+                  <option>Rail Crash</option>
+                  <option>Road / Rail blockage</option>
+                  <option>Road Traffic Accident</option>
+                  <option>Plane Crash</option>
+                  <option>Shooting</option>
+                  <option>Unexploded Bomb</option>
+                  <option>Utilities Failure - Electricity</option>
+                  <option>Utilities Failure - Gas</option>
+                  <option>Utilities Failure - Water</option>
+                  <option>Utilities Failure - Telecoms</option>
+                  <option>Vessel sinking</option>
+                  <option>Other</option>
+                  
+               </select>
+            <br>
+
+          <p><label>No of fatalities (dead): <br>
+            <input class="input-block" name = "fatalities" type = "number" min="0">
+            </label></p>
+         
+          <p><label>No of casualties (injured): 
+            <input class="input-block" name = "casualties" type = "number" min="0">
+            </label></p>
+         
+          <p><label>No of people missing: 
+            <input class="input-block" name = "missing" type = "number" min="0">
+            </label></p>
+            
+                  <p>Please provide as much detail as you can concerning the nature of the
+             event.</p>
+         <textarea name = "comments"
+                   rows = "3" cols = "60">Enter text here.</textarea><br>
+         </fieldset>  
+         <br>  
+        <!-- The ability to upload photos here would be vv good, but is
+        beyond my technical capabilities in the time available. Maybe later in the
+        project?-->
+
+            <button class="button" type="submit" value="Submit">Submit</button>
+            <button class="button" type="reset" value="Submit">Reset</button>  
+      </form>
+
+   </section>
+   </body>
+</html>
+
