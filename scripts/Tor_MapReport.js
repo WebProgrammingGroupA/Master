@@ -4,6 +4,22 @@ var markers = [];
 var infoWin = [];
 var lastInfoWin;
 
+var searchTxtEle ;
+
+// Event Date Element
+var startDateEle ;
+var endDateEle ;
+
+// Event type Element
+var isEarthQEle ;
+var isCrimeEle ;
+var isInfraEle ;
+ 
+// Error Msg Element
+var errorMsgEle ;
+    
+    
+
 function initialize() {
 
 // Use HTML5 Geolocation to find user location.
@@ -14,7 +30,33 @@ function initialize() {
         showPosition();  
     }
  
+ 
+    // Register Event when user would like to use filter
+    if (document.getElementById("btnfilter").addEventListener) {
+        document.getElementById("btnfilter").addEventListener('click',processFilter,false);
+    } else if (document.getElementById("btnfilter").attachEvent)  {
+        // For IE8 or prior
+        document.getElementById("btnfilter").attachEvent('onclick', processFilter);
+    }
 
+   
+    // Search Text Element
+    searchTxtEle = document.getElementById("searchText");
+
+    // Event Date Element
+    startDateEle = document.getElementById("evtStartDate");
+    endDateEle = document.getElementById("evtEndDate");
+
+    // Event type Element
+    isEarthQEle =  document.getElementById("earthq");
+    isCrimeEle =  document.getElementById("crime");
+    isInfraEle =  document.getElementById("infra");
+
+    // Error Msg Element
+    errorMsgEle = document.getElementById("errMsg");
+
+    // reset style
+    resetStyle();
 }
 
 function showPosition(position) {
@@ -65,7 +107,7 @@ function loadEvents(){
     var report1 = new report();
     report1.pos = new google.maps.LatLng(51.469194055890355,-0.0164794921875);
     report1.type= "Earthquake physical damage";
-    report1.ubtype = "Residential building collapse";
+    report1.subtype = "Residential building collapse";
     report1.time= "14 Jun 2015 20:00";
     report1.KnownFatalities= 3;
     report1.KnownCasualties= "20+";
@@ -114,11 +156,6 @@ function getInfoWindow(report){
     
 }
 
-/*function showReportWindow(report,marker){
-    
-    getInfoWindow(report).open(map,marker);
-    
-}*/
 
 function addMarkersListeners(){
     
@@ -163,4 +200,167 @@ function drawMap(){
     addMarkersListeners();
 }
 
+// Week 05 : Main function to process the criteria
+function processFilter(){
+    
+    //Reset stype
+    resetStyle();
+    
+    //Validation 
+    if(isFailValidateFilter())
+        return;
+    
+    // Search by Event Description (can be Blank)
+    var searchTxt = searchTxtEle.value;
+    
+     // Event Date (dd/mm/yyyy)
+    var startDate = startDateEle.value;
+    var endDate = startDateEle.value;
+    
+    // Event type
+    var isEarthQ =  isEarthQEle.checked;
+    var isCrime =  isCrimeEle.checked;
+    var isInfra =  isInfraEle.checked;
+    
+    // Create query and send to Application server (AJAX)
+
+ 
+    
+}
+
+// Week 05 : Style reset
+function resetStyle()
+{
+    document.getElementById("filterEventType").setAttribute("style","");
+    document.getElementById("filterDate").setAttribute("style","");
+    errorMsgEle.innerHTML = "";
+}
+// Week 05 : Validation function to process the criteria
+function isFailValidateFilter(){
+    
+    // Validate Date format
+      if (isFailValidateDateformat(startDateEle.value)||isFailValidateDateformat(endDateEle.value))
+    {
+        showError("Please input start and end date in dd/mm/yyyy format or leave it blank");
+        
+        document.getElementById("filterDate").setAttribute("style","color:red;");
+        error = true;
+    }
+    
+    var startDate =  new Date(startDateEle.value);
+    var endDate =  new Date(endDateEle.value);
+    var tod = new Date(); // Today
+    // Event type
+    var isEarthQ =  isEarthQEle.checked;
+    var isCrime =  isCrimeEle.checked;
+    var isInfra =  isInfraEle.checked;
+    var error = false;
+    
+    //Validation 1 : start date must be before or equal today
+    if ( startDate > tod)
+    {
+        showError("Start date can't beyond today");
+         // Highlight input to red 
+         document.getElementById("filterDate").setAttribute("style","color:red;");
+        
+    }
+    
+    //Vadation 2 : end date must be before or equal today
+    /*if ( endDate > tod)
+    {
+        showError("End date can't beyond today");
+         // Highlight input to red 
+         document.getElementById("filterDate").setAttribute("style","color:red;");
+        
+    }*/
+    
+    // Validation 3 : end date must be after or equal start date
+    if (startDate > endDate)
+    {
+         showError("Start date must come before End date");
+         // Highlight input to red 
+         document.getElementById("filterDate").setAttribute("style","color:red;");
+         
+
+         error = true;
+    }
+   
+    //Validation 4 : If All event types unticked, warn user
+    
+    if (!(isEarthQ||isCrime||isInfra))
+    {
+        showError("No Event type selected");
+        
+        document.getElementById("filterEventType").setAttribute("style","color:red;");
+        error = true;
+    }
+    
+    return error;
+}
+
+// Week 5 : validate Date format user input (dd/mm/yyyy)
+
+function isFailValidateDateformat(usrdate){
+    
+    // User doesn't specify the date or all white space
+    if (usrdate.trim().length === 0)
+        return false;
+    
+    var dateArray = usrdate.split("/");
+
+    if(dateArray.length === 3)
+    {
+        
+        // Case 1: 1/1/ (no year) or no date /5/2000
+        // Not necessary , check isNum instead
+        //if (dateArray[0].length === 0 || dateArray[1].length === 0 || dateArray[2].length === 0)
+        //    return true;
+        
+        // Case 1: User inputs character 01/Feb/2000
+        if (!(isNum(dateArray[0])&& isNum(dateArray[1]) && isNum(dateArray[2])))
+            return true;
+        
+        // Case 2: Mount is not in 1-12
+        if(dateArray[1]>12 || dateArray[1]<1)
+            return true;
+        // Case 3: If month in rage 1-12 , check date
+        else {
+            
+                 var maxdate = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+    
+                // Leap years
+                if(dateArray[2] % 400 === 0 || (dateArray[2]  % 100 !== 0 && dateArray[2]  % 4 === 0))
+                {
+                    maxdate[1] = 29;
+                }
+                
+                
+                if (dateArray[0] > maxdate[dateArray[1]-1]){
+                        return true;
+                }
+            
+        }
+            
+      
+    }
+    
+    return true;
+    
+}
+
+// Week 5 : 
+function isNum(n)
+{
+    return typeof n === 'number' && isFinite(n);
+}
+// Week 5 :  Add error to unorder list
+function showError(errText)
+{
+    var item = document.createElement("li");
+    var errtext = document.createTextNode(errText);
+    item.appendChild(errtext);
+
+     errorMsgEle.appendChild(item);
+   
+}
 google.maps.event.addDomListener(window, 'load', initialize);
