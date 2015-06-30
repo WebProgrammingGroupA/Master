@@ -18,16 +18,23 @@ var isInfraEle ;
 // Error Msg Element
 var errorMsgEle ;
     
-    
+function IsSupportHTML5(){
+    return navigator.geolocation;
+}
 
 function initialize() {
 
 // Use HTML5 Geolocation to find user location.
-    if (navigator.geolocation) {
+    if (IsSupportHTML5()) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
         //document.getElementById('map-canvas').innerHTML = "Geolocation is not supported by this browser."; 
+        
         showPosition();  
+        
+        //If Browser doesn't support HTML5
+        document.getElementById("startdatelabel").value += "dd/mm/yyyy";
+        document.getElementById("enddatelabel").value += "dd/mm/yyyy";
     }
  
  
@@ -303,9 +310,21 @@ function isFailValidateFilter(){
 function isFailValidateDateformat(usrdate){
     
     // User doesn't specify the date or all white space
-    if (usrdate.trim().length === 0)
-        return false;
     
+    if(typeof String.prototype.trim !== 'function') {
+            String.prototype.trim = function() {
+                    usrdate = usrdate.replace(/^\s+|\s+$/g, '').leng; 
+                }
+    }else {
+        usrdate = usrdate.trim()
+       
+    }
+    
+     if (usrdate.length === 0)
+            return false;
+        
+        
+        
     var dateArray = usrdate.split("/");
 
     if(dateArray.length === 3)
