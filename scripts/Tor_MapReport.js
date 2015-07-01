@@ -26,7 +26,7 @@ function initialize() {
 
 // Use HTML5 Geolocation to find user location.
     if (IsSupportHTML5()) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showPosition,PositionError);
     } else {
         //document.getElementById('map-canvas').innerHTML = "Geolocation is not supported by this browser."; 
         
@@ -64,6 +64,26 @@ function initialize() {
 
     // reset style
     resetStyle();
+}
+
+function PositionError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            showError("User denied the request for Geolocation.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            showError(innerHTML = "Location information is unavailable.");
+            break;
+        case error.TIMEOUT:
+            showError(innerHTML = "The request to get user location timed out.");
+            break;
+        case error.UNKNOWN_ERROR:
+            showError(innerHTML = "An unknown error occurred.");
+            break;
+    }
+    
+    // If Browser support HTML5 but can't get current position. Use default.
+    showPosition();
 }
 
 function showPosition(position) {
@@ -218,17 +238,17 @@ function processFilter(){
         return;
     
     // Search by Event Description (can be Blank)
-    var searchTxt = searchTxtEle.value;
-    
-     // Event Date (dd/mm/yyyy)
-    var startDate = startDateEle.value;
-    var endDate = startDateEle.value;
-    
-    // Event type
-    var isEarthQ =  isEarthQEle.checked;
-    var isCrime =  isCrimeEle.checked;
-    var isInfra =  isInfraEle.checked;
-    
+//    var searchTxt = searchTxtEle.value;
+//    
+//     // Event Date (dd/mm/yyyy)
+//    var startDate = startDateEle.value;
+//    var endDate = startDateEle.value;
+//    
+//    // Event type
+//    var isEarthQ =  isEarthQEle.checked;
+//    var isCrime =  isCrimeEle.checked;
+//    var isInfra =  isInfraEle.checked;
+//    
     // Create query and send to Application server (AJAX)
 
  
@@ -245,6 +265,7 @@ function resetStyle()
 // Week 05 : Validation function to process the criteria
 function isFailValidateFilter(){
     
+      var error = false;
     // Validate Date format
       if (isFailValidateDateformat(startDateEle.value)||isFailValidateDateformat(endDateEle.value))
     {
@@ -254,14 +275,24 @@ function isFailValidateFilter(){
         error = true;
     }
     
-    var startDate =  new Date(startDateEle.value);
-    var endDate =  new Date(endDateEle.value);
+    var sd = startDateEle.value.split("/");
+    var startDate =  new Date();
+    startDate.setDate(sd[0]);
+    startDate.setMonth(sd[1]-1); // Month in this method is 0-11
+    startDate.setYear(sd[2]);
+    
+    var ed = endDateEle.value.split("/");
+    var endDate =  new Date();
+    endDate.setDate(ed[0]);
+    endDate.setMonth(ed[1]-1);
+    endDate.setYear(ed[2]);
+    
     var tod = new Date(); // Today
     // Event type
     var isEarthQ =  isEarthQEle.checked;
     var isCrime =  isCrimeEle.checked;
     var isInfra =  isInfraEle.checked;
-    var error = false;
+  
     
     //Validation 1 : start date must be before or equal today
     if ( startDate > tod)
@@ -323,7 +354,7 @@ function isFailValidateDateformat(usrdate){
      if (usrdate.length === 0)
             return false;
         
-        
+
         
     var dateArray = usrdate.split("/");
 
@@ -336,7 +367,7 @@ function isFailValidateDateformat(usrdate){
         //    return true;
         
         // Case 1: User inputs character 01/Feb/2000
-        if (!(isNum(dateArray[0])&& isNum(dateArray[1]) && isNum(dateArray[2])))
+        if (!(isNum(dateArray[0]) && isNum(dateArray[1]) && isNum(dateArray[2])))
             return true;
         
         // Case 2: Mount is not in 1-12
@@ -363,14 +394,17 @@ function isFailValidateDateformat(usrdate){
       
     }
     
-    return true;
+    return false; //Doesn't match all bad cases
     
 }
 
 // Week 5 : 
 function isNum(n)
 {
-    return typeof n === 'number' && isFinite(n);
+    // n must start with/without whitespace ,follow by one number or more and end with/without whitespace 
+     var reg = /^\s*\d+\s*$/; 
+     return reg.test(n);
+    
 }
 // Week 5 :  Add error to unorder list
 function showError(errText)
