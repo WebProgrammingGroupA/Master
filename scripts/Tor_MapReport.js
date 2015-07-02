@@ -17,27 +17,23 @@ var isInfraEle ;
  
 // Error Msg Element
 var errorMsgEle ;
-    
-function IsSupportHTML5(){
-    return navigator.geolocation;
-}
 
 function initialize() {
 
-// Use HTML5 Geolocation to find user location.
-    if (IsSupportHTML5()) {
+    // Use HTML5 Geolocation to find user location.
+    if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition,PositionError);
     } else {
-        //document.getElementById('map-canvas').innerHTML = "Geolocation is not supported by this browser."; 
-        
+        //document.getElementById('map-canvas').innerHTML = "Geolocation is not supported by this browser.";      
         showPosition();  
         
-        //If Browser doesn't support HTML5
+        //Week 5 : If Browser doesn't support HTML5
         document.getElementById("startdatelabel").value += "dd/mm/yyyy";
         document.getElementById("enddatelabel").value += "dd/mm/yyyy";
     }
  
- 
+
+  
     // Register Event when user would like to use filter
     if (document.getElementById("btnfilter").addEventListener) {
         document.getElementById("btnfilter").addEventListener('click',processFilter,false);
@@ -66,26 +62,26 @@ function initialize() {
     resetStyle();
 }
 
+// Week 5 : Error Handler if Browser support HTML5 but can't get position
 function PositionError(error) {
     switch(error.code) {
         case error.PERMISSION_DENIED:
             showError("User denied the request for Geolocation.");
             break;
         case error.POSITION_UNAVAILABLE:
-            showError(innerHTML = "Location information is unavailable.");
+            showError("Location information is unavailable.");
+           
             break;
         case error.TIMEOUT:
-            showError(innerHTML = "The request to get user location timed out.");
+            showError("The request to get user location timed out.");
             break;
         case error.UNKNOWN_ERROR:
-            showError(innerHTML = "An unknown error occurred.");
+            showError("An unknown error occurred.");
             break;
-    }
-    
-    // If Browser support HTML5 but can't get current position. Use default.
-    showPosition();
+    }    
+     // Use default location
+      showPosition();
 }
-
 function showPosition(position) {
 
     // Default map center in London
@@ -388,17 +384,17 @@ function isFailValidateDateformat(usrdate){
                 if (dateArray[0] > maxdate[dateArray[1]-1]){
                         return true;
                 }
-            
-        }
-            
-      
+        }    
+    }else{
+        // Date user input doesn't have date , month and year
+        return true;
     }
     
     return false; //Doesn't match all bad cases
     
 }
 
-// Week 5 : 
+// Week 5 : Check if n is a number
 function isNum(n)
 {
     // n must start with/without whitespace ,follow by one number or more and end with/without whitespace 
